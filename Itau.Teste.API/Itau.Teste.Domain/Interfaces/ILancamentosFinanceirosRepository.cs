@@ -4,5 +4,6 @@
     {
         void CadastroLancamentoFinanceiro(LancamentoFinanceiro lancamentoFinanceiro);
         void AtualizacaoLancamentoFinanceiro(LancamentoFinanceiro lancamentoFinanceiro);
+        void ExclusaoLancamentoFinanceiro(int id);
     }
 }

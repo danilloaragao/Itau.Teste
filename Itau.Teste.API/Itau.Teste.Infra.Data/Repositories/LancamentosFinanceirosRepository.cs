@@ -14,6 +14,19 @@ namespace Itau.Teste.Infra.Data.Repositories
         {
             this._context = context;
         }
+        public void ExclusaoLancamentoFinanceiro(int id)
+        {
+            LancamentoFinanceiro lancamento = this._context.LancamentoFinanceiros.FirstOrDefault(l => l.Id == id);
+
+            if (lancamento == null)
+                throw new LancamentoNaoEncontradoException("Lancamento não encontrado");
+
+            if (lancamento.Conciliado)
+                throw new LancamentoConciliadoException("Exclusão não permitida - Lançamento já conciliado");
+
+            this._context.LancamentoFinanceiros.Remove(lancamento);
+            this._context.SaveChanges();
+        }
 
         public void AtualizacaoLancamentoFinanceiro(LancamentoFinanceiro lancamentoFinanceiro)
         {
@@ -22,7 +35,7 @@ namespace Itau.Teste.Infra.Data.Repositories
             if (lancamento == null)
                 throw new LancamentoNaoEncontradoException("Lancamento não encontrado");
 
-            if (lancamentoFinanceiro.Conciliado)
+            if (lancamento.Conciliado)
                 throw new LancamentoConciliadoException("Atualização não permitida - Lançamento já conciliado");
 
             this._context.Update(lancamentoFinanceiro);

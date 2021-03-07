@@ -20,8 +20,12 @@ namespace Itau.Teste.Application.Services
 
         public void CadastroLancamentoFinanceiro(CadastroLancamentoFinanceiro lancamentoFinanceiro)
         {
-
             this._lancamentosFinanceirosRepository.CadastroLancamentoFinanceiro(lancamentoFinanceiro.ParaLancamentoFinanceiro());
+        }
+
+        public void ExclusaoLancamentoFinanceiro(int id)
+        {
+            this._lancamentosFinanceirosRepository.ExclusaoLancamentoFinanceiro(id);
         }
     }
 }

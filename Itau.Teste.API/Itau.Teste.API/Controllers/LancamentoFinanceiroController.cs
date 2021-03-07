@@ -53,6 +53,28 @@ namespace Itau.Teste.API.Controllers
             }
         }
 
+        [HttpDelete("/:id")]
+        public ActionResult Delete(int id)
+        {
+            try
+            {
+                this._lancamentosFinanceirosService.ExclusaoLancamentoFinanceiro(id);
+                return StatusCode(204);
+            }
+            catch (LancamentoNaoEncontradoException ex)
+            {
+                return StatusCode(422, ex.Message);
+            }
+            catch (LancamentoConciliadoException ex)
+            {
+                return StatusCode(403, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
 
     }
 }

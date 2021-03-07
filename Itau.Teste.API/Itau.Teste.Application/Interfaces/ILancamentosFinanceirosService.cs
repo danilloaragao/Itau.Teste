@@ -6,5 +6,6 @@ namespace Itau.Teste.Application.Interfaces
     {
         void CadastroLancamentoFinanceiro(CadastroLancamentoFinanceiro cadastroancamentoFinanceiro);
         void AtualizacaoLancamentoFinanceiro(AtualizacaoLancamentoFinanceiro atualizacaoLancamentoFinanceiro);
+        void ExclusaoLancamentoFinanceiro(int id);
     }
 }
