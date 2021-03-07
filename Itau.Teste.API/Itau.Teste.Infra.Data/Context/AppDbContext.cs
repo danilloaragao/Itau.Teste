@@ -1,10 +1,5 @@
 ﻿using Itau.Teste.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Itau.Teste.Infra.Data.Context
 {
@@ -12,11 +7,11 @@ namespace Itau.Teste.Infra.Data.Context
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-        public DbSet<LancamentoFinanceiro> LancamentoFinanceiros { get; set;}
+        public DbSet<LancamentoFinanceiro> LancamentoFinanceiros { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<LancamentoFinanceiro>(entity => 
+            modelBuilder.Entity<LancamentoFinanceiro>(entity =>
             {
                 entity.ToTable("teste_itau.LANCAMENTOS_FINANCEIROS");
 
@@ -33,9 +28,9 @@ namespace Itau.Teste.Infra.Data.Context
 
                 entity.Property(e => e.Valor)
                     .HasColumnName("VALOR")
-                    .HasPrecision(10,2)
+                    .HasPrecision(10, 2)
                     .HasColumnType("decimal(10,2)");
-                
+
                 entity.Property(e => e.Tipo)
                     .HasColumnName("TIPO")
                     .HasColumnType("int");

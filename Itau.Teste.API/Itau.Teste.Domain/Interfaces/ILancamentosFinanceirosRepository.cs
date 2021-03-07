@@ -3,5 +3,6 @@
     public interface ILancamentosFinanceirosRepository
     {
         void CadastroLancamentoFinanceiro(LancamentoFinanceiro lancamentoFinanceiro);
+        void AtualizacaoLancamentoFinanceiro(LancamentoFinanceiro lancamentoFinanceiro);
     }
 }

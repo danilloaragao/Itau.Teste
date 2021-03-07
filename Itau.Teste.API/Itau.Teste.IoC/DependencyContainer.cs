@@ -3,11 +3,6 @@ using Itau.Teste.Application.Services;
 using Itau.Teste.Domain.Entities;
 using Itau.Teste.Infra.Data.Repositories;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Itau.Teste.IoC
 {

@@ -1,11 +1,8 @@
 ﻿using Itau.Teste.Application.Interfaces;
 using Itau.Teste.Application.ViewModel;
-using Microsoft.AspNetCore.Http;
+using Itau.Teste.Domain.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Itau.Teste.API.Controllers
 {
@@ -13,7 +10,7 @@ namespace Itau.Teste.API.Controllers
     [Route("[controller]")]
     public class LancamentoFinanceiroController : Controller
     {
-        private ILancamentosFinanceirosService _lancamentosFinanceirosService;
+        private readonly ILancamentosFinanceirosService _lancamentosFinanceirosService;
 
         public LancamentoFinanceiroController(ILancamentosFinanceirosService lancamentosFinanceirosService)
         {
@@ -21,58 +18,41 @@ namespace Itau.Teste.API.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(CadastroLancamentoFinanceiro cadastroLancamento )
+        public ActionResult Create(CadastroLancamentoFinanceiro cadastroLancamento)
         {
             try
             {
                 this._lancamentosFinanceirosService.CadastroLancamentoFinanceiro(cadastroLancamento);
                 return StatusCode(204);
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
             }
         }
 
-        //// GET: LancamentoFinancaeiroController/Edit/5
-        //public ActionResult Edit(int id)
-        //{
-        //    return View();
-        //}
+        [HttpPut]
+        public ActionResult Update(AtualizacaoLancamentoFinanceiro atualizaçãoLancamento)
+        {
+            try
+            {
+                this._lancamentosFinanceirosService.AtualizacaoLancamentoFinanceiro(atualizaçãoLancamento);
+                return StatusCode(204);
+            }
+            catch(LancamentoNaoEncontradoException ex)
+            {
+                return StatusCode(422, ex.Message);
+            }
+            catch(LancamentoConciliadoException ex)
+            {
+                return StatusCode(403, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
 
-        //// POST: LancamentoFinancaeiroController/Edit/5
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit(int id, IFormCollection collection)
-        //{
-        //    try
-        //    {
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
 
-        //// GET: LancamentoFinancaeiroController/Delete/5
-        //public ActionResult Delete(int id)
-        //{
-        //    return View();
-        //}
-
-        //// POST: LancamentoFinancaeiroController/Delete/5
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Delete(int id, IFormCollection collection)
-        //{
-        //    try
-        //    {
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
     }
 }

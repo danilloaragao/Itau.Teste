@@ -5,8 +5,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Itau.Teste.Application.ViewModel
 {
-    public class CadastroLancamentoFinanceiro
+    public class AtualizacaoLancamentoFinanceiro
     {
+        [Required(ErrorMessage = "Id do lançamento é obrigatório.")]
+        public int Id { get; set; }
+
         [Required(ErrorMessage = "Data e Hora do lançamento é obrigatório.")]
         public DateTime DataHoraLancamento { get; set; }
 
@@ -16,14 +19,18 @@ namespace Itau.Teste.Application.ViewModel
         [Range(1, 2, ErrorMessage = "Tipo de lançamento inválido")]
         public TipoLancamentoFinanceiro Tipo { get; set; }
 
+        [Required(ErrorMessage = "Status da conciliação é obrigatório.")]
+        public bool Conciliado { get; set; }
+
         public LancamentoFinanceiro ParaLancamentoFinanceiro()
         {
             return new LancamentoFinanceiro
             {
+                Id = this.Id,
                 DataHoraLancamento = this.DataHoraLancamento,
                 Valor = this.Valor,
                 Tipo = this.Tipo,
-                Conciliado = false
+                Conciliado = this.Conciliado
             };
         }
     }
