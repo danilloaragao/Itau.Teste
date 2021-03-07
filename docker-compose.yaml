@@ -1,0 +1,37 @@
+version: '3'
+services:
+  mysql:
+    build:
+      dockerfile: ./Itau.Teste.DataBase/.dockerfile
+      context: .
+    container_name: database_teste_itau
+    environment:
+      MYSQL_PORT: 3306
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: teste_itau
+      MYSQL_PASSWORD: teste_itau
+      MYSQL_DATABASE: teste_itau
+    ports:
+      - 3306:3306
+    volumes:
+      - data:/var/lib/mysql
+      
+  front:
+    build:
+      dockerfile: ./Itau.Teste.Front/Dockerfile
+      context: .
+    container_name: front_teste_itau
+    ports:
+      - 8082:80
+      
+  api:
+    build:
+      dockerfile: ./Itau.Teste.API/Dockerfile
+      context: .
+    container_name: api_teste_itau
+    ports:
+      - 8081:80
+
+
+volumes:
+  data:

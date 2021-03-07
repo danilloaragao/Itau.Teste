@@ -1,0 +1,12 @@
+version: '3'
+services:
+  api:
+    build:
+      dockerfile: ./Dockerfile
+      context: .
+    container_name: api_teste_itau
+    ports:
+      - 49171:80
+
+volumes:
+  data:
