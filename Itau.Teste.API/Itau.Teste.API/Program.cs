@@ -20,8 +20,6 @@ namespace Itau.Teste.API
                 return Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    //webBuilder.UseSetting("https_port", "5001");
-                    //webBuilder.UseSetting("http_port", "8001");
                     webBuilder.UseStartup<Startup>();
                 });
             }
@@ -30,7 +28,6 @@ namespace Itau.Teste.API
                 return Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    //webBuilder.UseSetting("https_port", "5001");
                     webBuilder.UseStartup<Startup>();
                     webBuilder.UseUrls($"http://*:{porta}");
                 });
