@@ -1,6 +1,9 @@
 ﻿using Itau.Teste.Application.Interfaces;
-using Itau.Teste.Application.ViewModel;
+using Itau.Teste.Application.ViewModel.Entrada;
+using Itau.Teste.Application.ViewModel.Saida;
 using Itau.Teste.Domain.Entities;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Itau.Teste.Application.Services
 {
@@ -21,6 +24,21 @@ namespace Itau.Teste.Application.Services
         public void CadastroLancamentoFinanceiro(CadastroLancamentoFinanceiro lancamentoFinanceiro)
         {
             this._lancamentosFinanceirosRepository.CadastroLancamentoFinanceiro(lancamentoFinanceiro.ParaLancamentoFinanceiro());
+        }
+
+        public IEnumerable<ConsultaLancamentoFinanceiro> ConsultaLancamentoFinanceiro(PeriodoConsulta periodo)
+        {
+            List<ConsultaLancamentoFinanceiro> retorno = new();
+            List<LancamentoFinanceiro> consulta = this._lancamentosFinanceirosRepository.ConsultaLancamentoFinanceiro(periodo.Inicio, periodo.Fim).ToList();
+
+            foreach (LancamentoFinanceiro lancamentoFinanceiro in consulta)
+            {
+                ConsultaLancamentoFinanceiro lancamentoConsulta = new();
+                lancamentoConsulta.DeLancamentoFinanceiro(lancamentoFinanceiro);
+                retorno.Add(lancamentoConsulta);
+            }
+
+            return retorno;
         }
 
         public void ExclusaoLancamentoFinanceiro(int id)

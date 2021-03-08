@@ -1,5 +1,5 @@
 ﻿using Itau.Teste.Application.Interfaces;
-using Itau.Teste.Application.ViewModel;
+using Itau.Teste.Application.ViewModel.Entrada;
 using Itau.Teste.Domain.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -18,7 +18,7 @@ namespace Itau.Teste.API.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(CadastroLancamentoFinanceiro cadastroLancamento)
+        public ActionResult Inserir(CadastroLancamentoFinanceiro cadastroLancamento)
         {
             try
             {
@@ -32,18 +32,18 @@ namespace Itau.Teste.API.Controllers
         }
 
         [HttpPut]
-        public ActionResult Update(AtualizacaoLancamentoFinanceiro atualizaçãoLancamento)
+        public ActionResult Atualizar(AtualizacaoLancamentoFinanceiro atualizaçãoLancamento)
         {
             try
             {
                 this._lancamentosFinanceirosService.AtualizacaoLancamentoFinanceiro(atualizaçãoLancamento);
                 return StatusCode(204);
             }
-            catch(LancamentoNaoEncontradoException ex)
+            catch (LancamentoNaoEncontradoException ex)
             {
                 return StatusCode(422, ex.Message);
             }
-            catch(LancamentoConciliadoException ex)
+            catch (LancamentoConciliadoException ex)
             {
                 return StatusCode(403, ex.Message);
             }
@@ -54,7 +54,7 @@ namespace Itau.Teste.API.Controllers
         }
 
         [HttpDelete("/:id")]
-        public ActionResult Delete(int id)
+        public ActionResult Deletar(int id)
         {
             try
             {
@@ -75,6 +75,23 @@ namespace Itau.Teste.API.Controllers
             }
         }
 
-
+        [HttpGet("/:dataInicio/:dataFim")]
+        public ActionResult Consultar(DateTime dataInicio, DateTime dataFim)
+        {
+            try
+            {
+                return StatusCode(200, 
+                    this._lancamentosFinanceirosService.ConsultaLancamentoFinanceiro(
+                        new PeriodoConsulta(dataInicio,dataFim)));
+            }
+            catch(DatasConsultaException ex)
+            {
+                return StatusCode(400, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
     }
 }

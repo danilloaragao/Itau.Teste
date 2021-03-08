@@ -2,6 +2,7 @@
 using Itau.Teste.Domain.Exceptions;
 using Itau.Teste.Infra.Data.Context;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Itau.Teste.Infra.Data.Repositories
@@ -46,6 +47,14 @@ namespace Itau.Teste.Infra.Data.Repositories
         {
             this._context.Add(lancamentoFinanceiro);
             this._context.SaveChanges();
+        }
+
+        public IEnumerable<LancamentoFinanceiro> ConsultaLancamentoFinanceiro(DateTime inicio, DateTime fim)
+        {
+            List<LancamentoFinanceiro> retorno = new();
+
+            retorno = this._context.LancamentoFinanceiros.Where(l => l.DataHoraLancamento >= inicio && l.DataHoraLancamento <= fim).ToList();
+            return retorno;
         }
     }
 }

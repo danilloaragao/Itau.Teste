@@ -1,4 +1,6 @@
-﻿using Itau.Teste.Application.ViewModel;
+﻿using Itau.Teste.Application.ViewModel.Entrada;
+using Itau.Teste.Application.ViewModel.Saida;
+using System.Collections.Generic;
 
 namespace Itau.Teste.Application.Interfaces
 {
@@ -7,5 +9,6 @@ namespace Itau.Teste.Application.Interfaces
         void CadastroLancamentoFinanceiro(CadastroLancamentoFinanceiro cadastroancamentoFinanceiro);
         void AtualizacaoLancamentoFinanceiro(AtualizacaoLancamentoFinanceiro atualizacaoLancamentoFinanceiro);
         void ExclusaoLancamentoFinanceiro(int id);
+        IEnumerable<ConsultaLancamentoFinanceiro> ConsultaLancamentoFinanceiro(PeriodoConsulta periodo);
     }
 }

@@ -3,7 +3,7 @@ using Itau.Teste.Domain.Enums;
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Itau.Teste.Application.ViewModel
+namespace Itau.Teste.Application.ViewModel.Entrada
 {
     public class AtualizacaoLancamentoFinanceiro
     {
