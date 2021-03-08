@@ -76,7 +76,7 @@ namespace Itau.Teste.API.Controllers
         }
 
         [HttpGet("/:dataInicio/:dataFim")]
-        public ActionResult Consultar(DateTime dataInicio, DateTime dataFim)
+        public ActionResult ConsultarPeriodo(DateTime dataInicio, DateTime dataFim)
         {
             try
             {
@@ -92,6 +92,12 @@ namespace Itau.Teste.API.Controllers
             {
                 return StatusCode(500, ex.Message);
             }
+        }
+
+        [HttpGet("/:data")]
+        public ActionResult ConsultarDia(DateTime data)
+        {
+            return ConsultarPeriodo(data, data);
         }
 
         [HttpGet("relatorio/:mesReferencia")]
