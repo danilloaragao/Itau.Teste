@@ -93,5 +93,19 @@ namespace Itau.Teste.API.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
+
+        [HttpGet("relatorio/:mesReferencia")]
+        public ActionResult Relatorio(DateTime mesReferencia)
+        {
+            try
+            {
+                return StatusCode(200,
+                    this._lancamentosFinanceirosService.RelatorioMensal(mesReferencia));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
     }
 }

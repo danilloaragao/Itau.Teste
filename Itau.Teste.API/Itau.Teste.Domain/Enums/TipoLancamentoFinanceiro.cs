@@ -2,7 +2,7 @@
 {
     public enum TipoLancamentoFinanceiro
     {
-        Debito,
-        Credito
+        Debito = 1,
+        Credito = 2
     }
 }

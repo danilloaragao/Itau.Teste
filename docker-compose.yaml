@@ -1,10 +1,8 @@
 version: '3'
 services:
   mysql:
-    build:
-      dockerfile: ./Itau.Teste.DataBase/.dockerfile
-      context: .
     container_name: database_teste_itau
+    image: mysql:5.7.10
     environment:
       MYSQL_PORT: 3306
       MYSQL_ROOT_PASSWORD: root

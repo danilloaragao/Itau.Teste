@@ -53,7 +53,7 @@ namespace Itau.Teste.Infra.Data.Repositories
         {
             List<LancamentoFinanceiro> retorno = new();
 
-            retorno = this._context.LancamentoFinanceiros.Where(l => l.DataHoraLancamento >= inicio && l.DataHoraLancamento <= fim).ToList();
+            retorno = this._context.LancamentoFinanceiros.Where(l => l.DataHoraLancamento >= inicio && l.DataHoraLancamento <= fim).OrderBy(l => l.DataHoraLancamento).ToList();
             return retorno;
         }
     }
