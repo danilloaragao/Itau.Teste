@@ -4,16 +4,20 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CadastroComponent } from './cadastro.component';
+import { FeatherModule } from 'angular-feather';
+import { Check } from 'angular-feather/icons';
 
 
 @NgModule({
     imports: [
         CommonModule,
         RouterModule,
-        FormsModule
+        FormsModule,
+        FeatherModule.pick({ Check })
     ],
     exports: [
-        CadastroComponent
+        CadastroComponent,
+        FeatherModule
     ],
     declarations: [
         CadastroComponent
