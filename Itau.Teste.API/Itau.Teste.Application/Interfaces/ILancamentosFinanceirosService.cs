@@ -9,6 +9,7 @@ namespace Itau.Teste.Application.Interfaces
     {
         void CadastroLancamentoFinanceiro(CadastroLancamentoFinanceiro cadastroancamentoFinanceiro);
         void AtualizacaoLancamentoFinanceiro(AtualizacaoLancamentoFinanceiro atualizacaoLancamentoFinanceiro);
+        string AtualizacaoLancamentoFinanceiroLote(List<AtualizacaoLancamentoFinanceiro> atualizacoesLancamentoFinanceiro);
         void ExclusaoLancamentoFinanceiro(int id);
         IEnumerable<ConsultaLancamentoFinanceiro> ConsultaLancamentoFinanceiro(PeriodoConsulta periodo);
         RelatorioMes RelatorioMensal(DateTime mesReferencia);

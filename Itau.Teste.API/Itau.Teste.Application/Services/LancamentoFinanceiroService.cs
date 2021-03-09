@@ -22,6 +22,24 @@ namespace Itau.Teste.Application.Services
             this._lancamentosFinanceirosRepository.AtualizacaoLancamentoFinanceiro(atualizacaoLancamentoFinanceiro.ParaLancamentoFinanceiro());
         }
 
+        public string AtualizacaoLancamentoFinanceiroLote(List<AtualizacaoLancamentoFinanceiro> atualizacoesLancamentoFinanceiro)
+        {
+            int falhas = 0;
+
+            foreach (AtualizacaoLancamentoFinanceiro lancamento in atualizacoesLancamentoFinanceiro)
+            {
+                try
+                {
+                    AtualizacaoLancamentoFinanceiro(lancamento);
+                }
+                catch
+                {
+                    falhas++;
+                }
+            }
+            return $"{atualizacoesLancamentoFinanceiro.Count - falhas} de {atualizacoesLancamentoFinanceiro.Count} lançamentos atualizados";
+        }
+
         public void CadastroLancamentoFinanceiro(CadastroLancamentoFinanceiro lancamentoFinanceiro)
         {
             this._lancamentosFinanceirosRepository.CadastroLancamentoFinanceiro(lancamentoFinanceiro.ParaLancamentoFinanceiro());

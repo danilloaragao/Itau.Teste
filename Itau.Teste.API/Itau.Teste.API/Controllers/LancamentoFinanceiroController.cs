@@ -41,11 +41,11 @@ namespace Itau.Teste.API.Controllers
         [ProducesResponseType(StatusCodes.Status422UnprocessableEntity, Type = typeof(string))]
         [ProducesResponseType(StatusCodes.Status403Forbidden, Type = typeof(string))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(string))]
-        public ActionResult Atualizar(AtualizacaoLancamentoFinanceiro atualizaçãoLancamento)
+        public ActionResult Atualizar(AtualizacaoLancamentoFinanceiro atualizacaoLancamento)
         {
             try
             {
-                this._lancamentosFinanceirosService.AtualizacaoLancamentoFinanceiro(atualizaçãoLancamento);
+                this._lancamentosFinanceirosService.AtualizacaoLancamentoFinanceiro(atualizacaoLancamento);
                 return StatusCode(204);
             }
             catch (LancamentoNaoEncontradoException ex)
@@ -60,6 +60,13 @@ namespace Itau.Teste.API.Controllers
             {
                 return StatusCode(500, ex.Message);
             }
+        }
+
+        [HttpPut("/LancamentoFinanceiro/Lote")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
+        public ActionResult AtualizarLote(List<AtualizacaoLancamentoFinanceiro> atualizacoesLancamento)
+        {
+            return StatusCode(200, this._lancamentosFinanceirosService.AtualizacaoLancamentoFinanceiroLote(atualizacoesLancamento));
         }
 
         [HttpDelete("/LancamentoFinanceiro/{id}")]
@@ -96,11 +103,11 @@ namespace Itau.Teste.API.Controllers
         {
             try
             {
-                return StatusCode(200, 
+                return StatusCode(200,
                     this._lancamentosFinanceirosService.ConsultaLancamentoFinanceiro(
-                        new PeriodoConsulta(dataInicio,dataFim)));
+                        new PeriodoConsulta(dataInicio, dataFim)));
             }
-            catch(DatasConsultaException ex)
+            catch (DatasConsultaException ex)
             {
                 return StatusCode(400, ex.Message);
             }
