@@ -1,0 +1,18 @@
+.texto-entrada{
+    font-family: "Myriad Pro",Arial;
+    font-weight: bolder;
+    font-size: 22px;
+    color: #EC7000;
+    display: block;
+}
+
+.card-entrada{
+    padding-top: 50px;
+}
+
+.card-panel{
+    padding-top: 13vh;
+    padding-bottom: 13vh;
+    min-height: 40vh;
+    
+}
