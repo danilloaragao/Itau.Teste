@@ -426,3 +426,5 @@ tools/gulp-tasks/cldr/cldr-data/
 
 # Husky
 .husky/_
+
+.Itau.Teste.DataBase

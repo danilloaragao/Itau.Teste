@@ -1,8 +1,11 @@
 ﻿using Itau.Teste.Application.Interfaces;
 using Itau.Teste.Application.ViewModel.Entrada;
+using Itau.Teste.Application.ViewModel.Saida;
 using Itau.Teste.Domain.Exceptions;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 
 namespace Itau.Teste.API.Controllers
 {
@@ -18,6 +21,8 @@ namespace Itau.Teste.API.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(string))]
         public ActionResult Inserir(CadastroLancamentoFinanceiro cadastroLancamento)
         {
             try
@@ -32,6 +37,10 @@ namespace Itau.Teste.API.Controllers
         }
 
         [HttpPut]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status422UnprocessableEntity, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status403Forbidden, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(string))]
         public ActionResult Atualizar(AtualizacaoLancamentoFinanceiro atualizaçãoLancamento)
         {
             try
@@ -53,8 +62,12 @@ namespace Itau.Teste.API.Controllers
             }
         }
 
-        [HttpDelete("/:id")]
-        public ActionResult Deletar(int id)
+        [HttpDelete("/{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status422UnprocessableEntity, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status403Forbidden, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(string))]
+        public ActionResult Deletar([FromRoute] int id)
         {
             try
             {
@@ -75,8 +88,11 @@ namespace Itau.Teste.API.Controllers
             }
         }
 
-        [HttpGet("/:dataInicio/:dataFim")]
-        public ActionResult ConsultarPeriodo(DateTime dataInicio, DateTime dataFim)
+        [HttpGet("/{dataInicio}/{dataFim}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<ConsultaLancamentoFinanceiro>))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(string))]
+        public ActionResult ConsultarPeriodo([FromRoute] DateTime dataInicio, [FromRoute] DateTime dataFim)
         {
             try
             {
@@ -94,13 +110,18 @@ namespace Itau.Teste.API.Controllers
             }
         }
 
-        [HttpGet("/:data")]
-        public ActionResult ConsultarDia(DateTime data)
+        [HttpGet("/{data}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<ConsultaLancamentoFinanceiro>))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(string))]
+        public ActionResult ConsultarDia([FromRoute] DateTime data)
         {
             return ConsultarPeriodo(data, data);
         }
 
-        [HttpGet("relatorio/:mesReferencia")]
+        [HttpGet("relatorio/{mesReferencia}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(RelatorioMes))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(string))]
         public ActionResult Relatorio(DateTime mesReferencia)
         {
             try
