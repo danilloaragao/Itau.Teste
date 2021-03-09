@@ -1,1 +1,38 @@
-<p>conciliacao works!</p>
+<div class="row">
+    <div class="col s3 m3 col-pesquisa">
+        <div class="card">
+            <div class="row">
+                <div class="col s11 m11 ">
+                    <span class="titulo">Conciliação</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s11 m11">
+                    <input [(ngModel)]="this.dataConciliacao" type="date">
+                    <span class="nome-campo">Data Conciliação</span>
+                </div>
+            </div>
+          
+            <div class="row">
+                <div class="col s11 m11">
+                    <span class="nome-campo botao">
+                    <a class="waves-effect waves-light btn" (click)="pesquisar()"><i class="material-icons right">search</i>Pesquisar</a></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s11 m11">
+                    <span class="nome-campo botao">
+                    <a class="waves-effect waves-light btn" (click)="conciliar()"><i class="material-icons right">assignment_turned_in</i>Conciliar</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col s9 m9">
+            <div class="row">
+                <app-detalhe-tema *ngFor="let lancamento of lancamentos; index as i" itemid="lancamento.id" [index]='i' [lancamento]='lancamento' (emmitStatus)="atualizaLancamento($event)"></app-detalhe-tema>
+        </div>
+
+    </div>
+</div>

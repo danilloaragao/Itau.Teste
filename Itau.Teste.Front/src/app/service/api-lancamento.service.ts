@@ -18,12 +18,22 @@ export class ApiLancamentoService {
   async consultarPeriodo(inicio:Date, fim:Date):Promise<Lancamento[]>{
     return this.http.get<Lancamento[]>(`${this.baseUrl}/${inicio}/${fim}`).toPromise()
   }
+  
+  async consultarDia(dia:Date):Promise<Lancamento[]>{
+    return this.http.get<Lancamento[]>(`${this.baseUrl}/${dia}`).toPromise()
+  }
 
   async atualizar(lancamento:Lancamento):Promise<string>{
     return this.http.put<string>(`${this.baseUrl}`, lancamento).toPromise()
   }
 
+  async atualizarLote(lancamentos:Lancamento[]):Promise<any>{
+    return this.http.put<string>(`${this.baseUrl}/Lote`, lancamentos).toPromise()
+  }
+
   async excluir(id:number):Promise<string>{
     return this.http.delete<string>(`${this.baseUrl}/${id}`).toPromise()
   }
+
+
 }

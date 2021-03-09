@@ -22,7 +22,7 @@ namespace Itau.Teste.API.Controllers
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(RespostaString))]
         public ActionResult Inserir(CadastroLancamentoFinanceiro cadastroLancamento)
         {
             try
@@ -32,15 +32,15 @@ namespace Itau.Teste.API.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, ex.Message);
+                return StatusCode(500, new RespostaString(ex.Message));
             }
         }
 
         [HttpPut]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status422UnprocessableEntity, Type = typeof(string))]
-        [ProducesResponseType(StatusCodes.Status403Forbidden, Type = typeof(string))]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status422UnprocessableEntity, Type = typeof(RespostaString))]
+        [ProducesResponseType(StatusCodes.Status403Forbidden, Type = typeof(RespostaString))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(RespostaString))]
         public ActionResult Atualizar(AtualizacaoLancamentoFinanceiro atualizacaoLancamento)
         {
             try
@@ -50,30 +50,30 @@ namespace Itau.Teste.API.Controllers
             }
             catch (LancamentoNaoEncontradoException ex)
             {
-                return StatusCode(422, ex.Message);
+                return StatusCode(422, new RespostaString(ex.Message));
             }
             catch (LancamentoConciliadoException ex)
             {
-                return StatusCode(403, ex.Message);
+                return StatusCode(403, new RespostaString(ex.Message));
             }
             catch (Exception ex)
             {
-                return StatusCode(500, ex.Message);
+                return StatusCode(500, new RespostaString(ex.Message));
             }
         }
 
         [HttpPut("/LancamentoFinanceiro/Lote")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(RespostaString))]
         public ActionResult AtualizarLote(List<AtualizacaoLancamentoFinanceiro> atualizacoesLancamento)
         {
-            return StatusCode(200, this._lancamentosFinanceirosService.AtualizacaoLancamentoFinanceiroLote(atualizacoesLancamento));
+            return StatusCode(200, new RespostaString(this._lancamentosFinanceirosService.AtualizacaoLancamentoFinanceiroLote(atualizacoesLancamento)));
         }
 
         [HttpDelete("/LancamentoFinanceiro/{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status422UnprocessableEntity, Type = typeof(string))]
-        [ProducesResponseType(StatusCodes.Status403Forbidden, Type = typeof(string))]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status422UnprocessableEntity, Type = typeof(RespostaString))]
+        [ProducesResponseType(StatusCodes.Status403Forbidden, Type = typeof(RespostaString))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(RespostaString))]
         public ActionResult Deletar([FromRoute] int id)
         {
             try
@@ -83,22 +83,22 @@ namespace Itau.Teste.API.Controllers
             }
             catch (LancamentoNaoEncontradoException ex)
             {
-                return StatusCode(422, ex.Message);
+                return StatusCode(422, new RespostaString(ex.Message));
             }
             catch (LancamentoConciliadoException ex)
             {
-                return StatusCode(403, ex.Message);
+                return StatusCode(403, new RespostaString(ex.Message));
             }
             catch (Exception ex)
             {
-                return StatusCode(500, ex.Message);
+                return StatusCode(500, new RespostaString(ex.Message));
             }
         }
 
         [HttpGet("/LancamentoFinanceiro/{dataInicio}/{dataFim}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<ConsultaLancamentoFinanceiro>))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(RespostaString))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(RespostaString))]
         public ActionResult ConsultarPeriodo([FromRoute] DateTime dataInicio, [FromRoute] DateTime dataFim)
         {
             try
@@ -109,18 +109,18 @@ namespace Itau.Teste.API.Controllers
             }
             catch (DatasConsultaException ex)
             {
-                return StatusCode(400, ex.Message);
+                return StatusCode(400, new RespostaString(ex.Message));
             }
             catch (Exception ex)
             {
-                return StatusCode(500, ex.Message);
+                return StatusCode(500, new RespostaString(ex.Message));
             }
         }
 
         [HttpGet("/LancamentoFinanceiro/{data}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<ConsultaLancamentoFinanceiro>))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(RespostaString))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(RespostaString))]
         public ActionResult ConsultarDia([FromRoute] DateTime data)
         {
             return ConsultarPeriodo(data, data);
@@ -128,7 +128,7 @@ namespace Itau.Teste.API.Controllers
 
         [HttpGet("/LancamentoFinanceiro/Relatorio/{mesReferencia}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(RelatorioMes))]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(RespostaString))]
         public ActionResult Relatorio(DateTime mesReferencia)
         {
             try
@@ -138,7 +138,7 @@ namespace Itau.Teste.API.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, ex.Message);
+                return StatusCode(500, new RespostaString(ex.Message));
             }
         }
     }
