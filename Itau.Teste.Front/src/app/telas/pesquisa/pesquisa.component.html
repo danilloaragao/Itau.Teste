@@ -1,1 +1,37 @@
-<p>pesquisa works!</p>
+<div class="row">
+    <div class="col s3 m3 col-pesquisa">
+        <div class="card">
+            <div class="row">
+                <div class="col s11 m11 ">
+                    <span class="titulo">Consulta</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s11 m11">
+                    <input [(ngModel)]="this.dataInicio" type="date">
+                    <span class="nome-campo">Data Início</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s11 m11">
+                    <input [(ngModel)]="this.dataFim" type="date">
+                    <span class="nome-campo">Data Fim</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s11 m11">
+                    <span class="nome-campo botao">
+                    <a class="waves-effect waves-light btn" (click)="pesquisar()"><i class="material-icons right">search</i>Pesquisar</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col s9 m9">
+            <div class="row">
+                <app-detalhe-tema *ngFor="let lancamento of lancamentos; index as i" itemid="lancamento.id" [index]='i' [lancamento]='lancamento'></app-detalhe-tema>
+        </div>
+
+    </div>
+</div>

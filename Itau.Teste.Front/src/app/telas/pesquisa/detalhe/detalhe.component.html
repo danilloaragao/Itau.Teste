@@ -1,0 +1,37 @@
+<div class="col s12 m12 linha z-depth-3" [ngClass]="background()">
+    <div class="row linha">
+        <div class="col s4 m4">
+            <input type="datetime-local" [ngModel]="this.lancamento.dataHoraLancamento | date:'yyyy-MM-ddTHH:mm'"
+                (ngModelChange)="this.lancamento.dataHoraLancamento = $event" 
+                disabled={{this.lancamento.conciliado}}/>
+            <span class="nome-campo">Data Hora Lancamento</span>
+        </div>
+        <div class="col s2 m2">
+            <select class="browser-default" (change)="selecaoTipoLancamento($event.target.value)" [disabled]="this.lancamento.conciliado">
+                <option value="1" selected>Debito</option>
+                <option value="2">Crédito</option>
+            </select>
+            <span class="nome-campo">Tipo</span>
+        </div>
+        <div class="col s3 m3">
+            <input [(ngModel)]="this.lancamento.valor" type="number" step=".01" disabled={{this.lancamento.conciliado}}/>
+            <span class="nome-campo">Valor</span>
+        </div>
+        <div class="col s2 m2">
+            <input type="text" value="{{this.lancamento.conciliado? 'Conciliado' : 'Pendente'}}" disabled/>
+            <span class="nome-campo">Status</span>
+        </div>
+        <div class="col s1 m1 icone">
+            <i-feather name="edit-3" [ngClass]="{
+                'atualizar': !this.lancamento.conciliado,
+                'botao-desabilitado': this.lancamento.conciliado
+              }"  (click)="atualizar()"></i-feather>
+
+              <i-feather name="trash-2" [ngClass]="{
+                'excluir': !this.lancamento.conciliado,
+                'botao-desabilitado': this.lancamento.conciliado
+              }"  (click)="excluir()"></i-feather>
+        </div>
+    </div>
+
+</div>

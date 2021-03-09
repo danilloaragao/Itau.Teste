@@ -39,7 +39,12 @@ namespace Itau.Teste.Infra.Data.Repositories
             if (lancamento.Conciliado)
                 throw new LancamentoConciliadoException("Atualização não permitida - Lançamento já conciliado");
 
-            this._context.Update(lancamentoFinanceiro);
+            lancamento.Conciliado = lancamentoFinanceiro.Conciliado;
+            lancamento.DataHoraLancamento = lancamentoFinanceiro.DataHoraLancamento;
+            lancamento.Tipo = lancamentoFinanceiro.Tipo;
+            lancamento.Valor = lancamentoFinanceiro.Valor;
+
+            this._context.Update(lancamento);
             this._context.SaveChanges();
         }
 

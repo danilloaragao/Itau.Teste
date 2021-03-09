@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TipoLancamento } from 'src/app/enums/tipo-lancamento.enum';
 import CadastroLancamento from 'src/app/interfaces/cadastro-lancamento';
-import { ApiService } from 'src/app/service/api.service';
+import { ApiLancamentoService } from 'src/app/service/api-lancamento.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -11,7 +11,7 @@ import { ApiService } from 'src/app/service/api.service';
 })
 export class CadastroComponent implements OnInit {
 
-  constructor(private apiService: ApiService, private router: Router) {
+  constructor(private apiService: ApiLancamentoService, private router: Router) {
   }
 
   @Input() public lancamento: CadastroLancamento = {
@@ -25,10 +25,6 @@ export class CadastroComponent implements OnInit {
 
   selecaoTipoLancamento(tipoLancamento: number) {
     this.lancamento.tipo = Number(tipoLancamento)
-  }
-
-  dateChanged(eventDate: string): Date | null {
-    return !!eventDate ? new Date(eventDate) : null;
   }
 
   cadastrar() {

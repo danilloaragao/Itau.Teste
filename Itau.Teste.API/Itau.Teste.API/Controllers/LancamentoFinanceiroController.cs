@@ -62,7 +62,7 @@ namespace Itau.Teste.API.Controllers
             }
         }
 
-        [HttpDelete("/{id}")]
+        [HttpDelete("/LancamentoFinanceiro/{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status422UnprocessableEntity, Type = typeof(string))]
         [ProducesResponseType(StatusCodes.Status403Forbidden, Type = typeof(string))]
@@ -88,7 +88,7 @@ namespace Itau.Teste.API.Controllers
             }
         }
 
-        [HttpGet("/{dataInicio}/{dataFim}")]
+        [HttpGet("/LancamentoFinanceiro/{dataInicio}/{dataFim}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<ConsultaLancamentoFinanceiro>))]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(string))]
@@ -110,7 +110,7 @@ namespace Itau.Teste.API.Controllers
             }
         }
 
-        [HttpGet("/{data}")]
+        [HttpGet("/LancamentoFinanceiro/{data}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<ConsultaLancamentoFinanceiro>))]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(string))]
@@ -119,7 +119,7 @@ namespace Itau.Teste.API.Controllers
             return ConsultarPeriodo(data, data);
         }
 
-        [HttpGet("relatorio/{mesReferencia}")]
+        [HttpGet("/LancamentoFinanceiro/Relatorio/{mesReferencia}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(RelatorioMes))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(string))]
         public ActionResult Relatorio(DateTime mesReferencia)
