@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="col s12 m12">
+        <div class="card"> 
+            <table class="striped">
+                <thead>
+                    <tr><th colspan="4" class="center dia">{{pegarDia()}}</th></tr>
+                    <tr>
+                        <th class="col-1">Hora</th>
+                        <th class="col-2">Valor</th>
+                        <th class="col-3">Tipo</th>
+                        <th class="col-4">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let lancamento of this.lancamentosDia.lancamentos">
+                        <td class="col-1">{{pegarHora(lancamento.dataHoraLancamento)}}</td>
+                        <td class="col-2">R${{lancamento.valor.toFixed(2)}}</td>
+                        <td class="col-3">{{lancamento.tipo == 1 ? 'Débito' :' Crédito'}}</td>
+                        <td class="col-4">{{lancamento.conciliado ? 'Conciliado' : 'Pendente'}}</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td class="col-1">Totais</td>
+                        <td class="col-2">Crédito: R${{this.lancamentosDia.totalCredito.toFixed(2)}}</td>
+                        <td class="col-3">Dédito: R${{this.lancamentosDia.totalDebito.toFixed(2)}}</td>
+                        <td class="col-4">Saldo: R${{this.lancamentosDia.saldo.toFixed(2)}}</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>

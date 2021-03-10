@@ -1,1 +1,49 @@
-<p>relatorio works!</p>
+<div class="row">
+    <div class="col s3 m3 col-pesquisa">
+        <div class="card">
+            <div class="row">
+                <div class="col s12 m12 ">
+                    <span class="titulo">Relatório </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m12">
+                    <input (change)="escolhaMes($event.target.value)" type="month">
+                    <span class="nome-campo">Mês Referência</span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s12 m12">
+                    <span class="nome-campo botao">
+                        <a class="waves-effect waves-light btn" (click)="pesquisar()"><i
+                                class="material-icons right">list_alt</i>Extrair</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col s9 m9 col-pesquisa">
+        <div class="card" *ngIf="this.relatorioMensal">
+            <span class="mes-referencia">{{pegarMesRefenciaTexto()}}</span>
+            <span *ngIf="this.relatorioMensal.lancamentosDia.length == 0" class="notificacao">Não existem lançamentos
+                para o mês pesquisado</span>
+
+
+                <app-detalhe-dia *ngFor="let lancamento of relatorioMensal.lancamentosDia; index as i" itemid="i" [index]='i'
+                [lancamentosDia]='lancamento'></app-detalhe-dia>
+                
+                <table *ngIf="this.relatorioMensal.lancamentosDia.length != 0" class="total-mes">
+                    <tfoot>
+                        <tr>
+                            <td>Totais</td>
+                            <td>Crédito: R${{this.relatorioMensal.totalCredito.toFixed(2)}}</td>
+                            <td>Dédito: R${{this.relatorioMensal.totalDebito.toFixed(2)}}</td>
+                            <td>Saldo: R${{this.relatorioMensal.saldo.toFixed(2)}}</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+    </div>
+</div>

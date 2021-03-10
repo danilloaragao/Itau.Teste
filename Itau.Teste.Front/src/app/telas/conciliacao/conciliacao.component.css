@@ -29,4 +29,5 @@ input, select{
     margin-bottom: 0 !important;
     margin-top: 10px !important;
     margin-left: 10px !important;
+    max-width: 85%;
 }

@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { RelatorioComponent } from './relatorio.component';
-
+import { DetalheDiaComponent } from './detalhe-dia/detalhe-dia.component';
 
 @NgModule({
     imports: [
@@ -16,7 +16,8 @@ import { RelatorioComponent } from './relatorio.component';
         RelatorioComponent
     ],
     declarations: [
-        RelatorioComponent
+        RelatorioComponent,
+        DetalheDiaComponent
     ],
     providers: [],
 })
