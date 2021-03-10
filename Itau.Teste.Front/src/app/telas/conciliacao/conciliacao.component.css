@@ -21,8 +21,25 @@
     font-weight: bold;
     color:  rgb(236,112,0);
 }
+
+.notificacao{
+    margin-top: 15px;
+    font-size: 10px;
+    display: block;
+    text-align: center;
+    width: 100%;
+    font-weight: bold;
+    color:  rgb(77, 37, 3);
+}
+
 .botao{
     margin-bottom: 15px !important;
+}
+
+.linha{
+    margin-top: 10px;
+    margin-bottom: 5px;
+    background-color: white;
 }
 
 input, select{
