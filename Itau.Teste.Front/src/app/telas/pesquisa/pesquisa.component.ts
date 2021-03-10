@@ -24,6 +24,12 @@ export class PesquisaComponent implements OnInit {
       alert('Obrigatório informar o perído da pesquisa')
       return
     }
+
+    if (this.dataInicio > this.dataFim) {
+      alert('A data inicial não pode ser superior á da final')
+      return
+    }
+
     this.apiService.consultarPeriodo(this.dataInicio, this.dataFim)
       .then(resp => this.lancamentos = resp)
       .catch(err => {
