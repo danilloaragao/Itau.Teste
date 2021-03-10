@@ -178,6 +178,8 @@ DocProject/Help/html
 # Click-Once directory
 publish/
 
+/.Itau.Teste.DataBase
+
 # Publish Web Output
 *.[Pp]ublish.xml
 *.azurePubxml
@@ -424,3 +426,5 @@ tools/gulp-tasks/cldr/cldr-data/
 
 # Husky
 .husky/_
+
+.Itau.Teste.DataBase

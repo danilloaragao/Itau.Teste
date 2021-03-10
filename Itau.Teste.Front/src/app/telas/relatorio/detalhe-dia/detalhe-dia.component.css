@@ -1,0 +1,40 @@
+table{
+    table-layout: fixed;
+    background-color: rgb(238, 170, 110);
+}
+
+.dia, tfoot{
+    background-color: rgb(236,112,0);;
+}
+
+tr, td, th{
+    padding:0;
+}
+
+tfoot{
+    font-weight: bold;
+}
+
+.row{
+    margin-bottom: 0;
+}
+
+.col1{
+    max-width: 30px !important;
+    min-width: 30px !important;
+}
+
+.col2{
+    max-width: 210px !important;
+    min-width: 210px !important;
+}
+
+.col3{
+    max-width: 210px !important;
+    min-width: 210px !important;
+}
+
+.col4{
+    max-width: 210px !important;
+    min-width: 210px !important;
+}

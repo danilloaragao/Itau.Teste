@@ -1,0 +1,50 @@
+.nome-campo{
+    font-size: 10px;
+    display: block;
+    text-align: center;
+    width: 100%;
+    font-weight: bold;
+    color:  rgb(236,112,0);
+}
+
+.btn{
+    background-color:  rgb(236,112,0);
+    border-radius: 25px;
+}
+
+.titulo{
+    margin-top: 15px;
+    font-size: 20px;
+    display: block;
+    text-align: center;
+    width: 100%;
+    font-weight: bold;
+    color:  rgb(236,112,0);
+}
+
+.notificacao{
+    margin-top: 15px;
+    font-size: 10px;
+    display: block;
+    text-align: center;
+    width: 100%;
+    font-weight: bold;
+    color:  rgb(77, 37, 3);
+}
+
+.botao{
+    margin-bottom: 15px !important;
+}
+
+.linha{
+    margin-top: 10px;
+    margin-bottom: 5px;
+    background-color: white;
+}
+
+input, select{
+    margin-bottom: 0 !important;
+    margin-top: 10px !important;
+    margin-left: 10px !important;
+    max-width: 85%;
+}

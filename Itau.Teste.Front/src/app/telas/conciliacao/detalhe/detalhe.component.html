@@ -1,0 +1,31 @@
+<div class="col s12 m12 linha z-depth-3" [ngClass]="background()">
+    <div class="row linha">
+        <div class="col s4 m4">
+            <input type="datetime-local" [ngModel]="this.lancamento.dataHoraLancamento | date:'yyyy-MM-ddTHH:mm'"
+                (ngModelChange)="this.lancamento.dataHoraLancamento = $event" 
+                disabled/>
+            <span class="nome-campo">Data Hora Lancamento</span>
+        </div>
+        <div class="col s3 m3">
+            <select class="browser-default" disabled>
+                <option value="1" selected>Debito</option>
+                <option value="2">Crédito</option>
+            </select>
+            <span class="nome-campo">Tipo</span>
+        </div>
+        <div class="col s3 m3">
+            <input [(ngModel)]="this.lancamento.valor" type="number" step=".01" disabled/>
+            <span class="nome-campo">Valor</span>
+        </div>
+        <div class="col s2 m2">
+            <label>
+                <input type="checkbox" [(ngModel)]="this.lancamento.conciliado" (change)="trocaStatus()" />
+                <span class="nome-campo" >Conciliar</span>
+           </label>
+<!-- 
+            <input type="checkbox" value="{{this.lancamento.conciliado? 'Conciliado' : 'Pendente'}}" disabled/>
+            <span class="nome-campo">Status</span> -->
+        </div>
+    </div>
+
+</div>
